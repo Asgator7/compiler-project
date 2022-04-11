@@ -4,11 +4,16 @@
       <div class="header-title">Digitar código</div>
       <textarea formControlName="code" type="text"></textarea>
       <button type="submit">Enviar</button>
-      <button (click)="resetform()">Limpar</button>
     </div>
     <div class="all-header">
       <div class="header-title">Subir arquivo</div>
       <input formControlName="codeFile" (change)="fileChanged($event)" type="file" accept=".txt">
     </div>
   </form>
+  <button (click)="resetForm()">Limpar</button>
+</div>
+
+<div class="input-result">
+  <div class="input-result-title">Código analisado</div>
+  <textarea readonly>{{formatedCode}}</textarea>
 </div>

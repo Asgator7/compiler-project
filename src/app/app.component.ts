@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   public codeFromFile: any;
   public constraintWords = ['VOID', 'IF', 'THEN', 'ELSE', 'WHILE', 'INT', 'MAIN'];
   public identifiers: any = [];
+  public formatedCode: any;
 
   constructor() { }
 
@@ -65,7 +66,8 @@ export class AppComponent implements OnInit {
         }
         tokens[i] = this.identifyChar(element);
       }
-      console.log(tokens)
+      this.formatedCode = tokens.join(' ');
+      this.formCode.reset();
     }, 1000);
   }
 
@@ -92,7 +94,8 @@ export class AppComponent implements OnInit {
     }
   }
 
-  resetform() {
+  resetForm() {
     this.formCode.reset();
+    this.formatedCode = '';
   }
 }
