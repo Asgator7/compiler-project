@@ -34,12 +34,16 @@ export class AppComponent implements OnInit {
   validateCode() {
     let fileReader = new FileReader();
     let code = this.formCode.get('code').value;
-    fileReader.onload = (e) => {
-      this.codeFromFile = fileReader.result;
+    if (this.codeFromFile) {
+      fileReader.onload = (e) => {
+        this.codeFromFile = fileReader.result;
+      }
+      fileReader.readAsText(this.file);
     }
-    fileReader.readAsText(this.file);
     setTimeout(() => {
-      code = this.codeFromFile;
+      if (this.codeFromFile) {
+        code = this.codeFromFile;
+      }
       let tokens: any = code.split(' ');
       let chars: any = [];
       tokens.forEach((element: any) => {
@@ -84,18 +88,16 @@ export class AppComponent implements OnInit {
     } else if (analisedItem.match(/[\+\-\*\/]/g)) {
       return `<MATOP, ${analisedItem}>`;
     } else {
-      if (this.identifiers.includes(analisedItem)) {
-        return `<${this.identifiers.find((x: any) => x.name === analisedItem).id}, ${analisedItem}>`;
+      if (!this.identifiers.find((x: any) => x.name === analisedItem)) {
+        this.identifiers.push({ id: this.identifiers.length + 1, name: analisedItem });;
       }
-      else {
-        this.identifiers.push({ id: this.identifiers.length + 1, name: analisedItem });
-        return `<${this.identifiers.find((x: any) => x.name === analisedItem).id}, ${analisedItem}>`;
-      }
+      return `<${this.identifiers.find((x: any) => x.name === analisedItem).id}, ${analisedItem}>`;
     }
   }
 
   resetForm() {
     this.formCode.reset();
     this.formatedCode = '';
+    this.identifiers = [];
   }
 }

@@ -17,3 +17,10 @@
   <div class="input-result-title">Código analisado</div>
   <textarea readonly>{{formatedCode}}</textarea>
 </div>
+<div class="input-result">
+  <div class="input-result-title">Tabela de identificadores</div>
+  <div *ngFor="let item of identifiers" class="identifiers" style="display: flex">
+    <div class="input-result-identifiers">{{item.id}} - </div>
+    <div class="input-result-identifiers">{{item.name}}</div>
+  </div>
+</div>
