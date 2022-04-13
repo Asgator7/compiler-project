@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
   validateCode() {
     let fileReader = new FileReader();
     let code = this.formCode.get('code').value;
-    if (this.codeFromFile) {
+    if (this.formCode.get('codeFile').value) {
       fileReader.onload = (e) => {
         this.codeFromFile = fileReader.result;
       }
