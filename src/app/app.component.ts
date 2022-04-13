@@ -71,7 +71,7 @@ export class AppComponent implements OnInit {
         tokens[i] = this.identifyChar(element);
       }
       this.formatedCode = tokens.join(' ');
-      this.formCode.reset();
+      // this.formCode.reset();
     }, 1000);
   }
 
